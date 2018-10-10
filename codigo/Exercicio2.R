@@ -1,0 +1,41 @@
+library(readxl)
+exercicio2 <- read_excel("dados/exercicio2.xls")
+
+table(exercicio2$Casas)
+
+grafico3 <- table(exercicio2$Casas)
+
+grafico3
+jpeg('graficos/exercicio2_hist.jpeg')
+
+hist(exercicio2$Casas, col = rainbow(10), labels = TRUE, main = "Histograma Exercicio 2", las = 1)
+
+dev.off()
+
+grafico31 <- mean(exercicio2$Casas)
+
+grafico31 <- c(grafico31, median(exercicio2$Casas))
+
+grafico31 <- c(grafico31, sd(exercicio2$Casas))
+
+grafico31 <- c(grafico31, var(exercicio2$Casas))
+
+grafico31 <- c(grafico31, min(exercicio2$Casas))
+
+grafico31 <- c(grafico31, max(exercicio2$Casas))
+
+grafico31 <- c(grafico31, quantile(exercicio2$Casas, c(0.25)))
+
+grafico31 <- c(grafico31, quantile(exercicio2$Casas, c(0.75)))
+
+jpeg('graficos/exercicio2_plot.jpeg')
+
+barplot(grafico31,
+        names.arg = c('Media', 'Mediana', 'Desvio P.', 'Variância', 'Minimo', 'Maximo', 'Quantil1', 'Quantil3'),
+        col = rainbow(10),
+        cex.names = .7,
+        main = "Medidas exercicio 2",
+        ylab = "Valores")
+
+dev.off()
+
